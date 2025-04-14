@@ -1,0 +1,9 @@
+<library path="impedance_effort_controller">
+  <class name="impedance_effort_controller/ImpedanceEffortController" 
+         type="impedance_effort_controller::ImpedanceEffortController" 
+         base_class_type="controller_interface::ControllerInterface">
+    <description>
+      PID controller using effort interface
+    </description>
+  </class>
+</library>

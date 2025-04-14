@@ -1,0 +1,38 @@
+/**:
+  controller_manager:
+    ros__parameters:
+      update_rate: 500 # Hz
+        
+      joint_state_broadcaster:
+        type: joint_state_broadcaster/JointStateBroadcaster
+          
+      arm_2r_controller:
+        type: joint_trajectory_controller/JointTrajectoryController
+
+  arm_2r_controller:
+    ros__parameters:
+      joints:
+        - joint_1
+        - joint_0
+      command_interfaces:
+        - effort
+      state_interfaces:
+        - position
+        - velocity
+      state_publish_rate: 50.0
+      action_monitor_rate: 20.0
+      allow_partial_joints_goal: true
+      allow_integration_in_goal_trajectories: false
+      interpolation_method: splines
+      open_loop_control: false
+      start_with_holding: true
+      allow_nonzero_velocity_at_trajectory_end: false
+      cmd_timeout: 0.0
+      constraints:
+        stopped_velocity_tolerance: 1.0
+        goal_time: 1.0
+        joint_0: { goal: 1.0, trajectory: 1.0}
+        joint_1: { goal: 1.0, trajectory: 1.0}
+      gains:   
+        joint_0: {p: 1.0, i: 0.0,d: 0.0, i_clamp_min: 0.0, i_clamp_max: 0.0}
+        joint_1: {p: 1.0, i: 0.0,d: 0.0, i_clamp_min: 0.0, i_clamp_max: 0.0}

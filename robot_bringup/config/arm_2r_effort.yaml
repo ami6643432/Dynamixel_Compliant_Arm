@@ -1,0 +1,28 @@
+/**:
+  controller_manager:
+    ros__parameters:
+      update_rate: 500 # Hz
+        
+      joint_state_broadcaster:
+        type: joint_state_broadcaster/JointStateBroadcaster
+          
+      arm_2r_controller:
+        type: pid_effort_controller/PIDEffortController
+
+  arm_2r_controller:
+    ros__parameters:
+      joints:
+        - joint_0
+        - joint_1
+      command_interfaces:
+        - effort
+      state_interfaces:
+        - position
+        - velocity
+        - effort
+      state_publish_rate: 500.0
+      action_monitor_rate: 200.0
+      # PID gains - tune these values as needed
+      p_gains: [4000.0, 5000.0]  # Proportional gains for joint_0 and joint_1
+      i_gains: [1.0, 1.0]      # Integral gains for joint_0 and joint_1
+      d_gains: [25.0, 25.0]    # Derivative gains for joint_0 and joint_1

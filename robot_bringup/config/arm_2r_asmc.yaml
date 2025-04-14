@@ -1,0 +1,38 @@
+/**:
+  controller_manager:
+    ros__parameters:
+      update_rate: 500 # Hz
+        
+      joint_state_broadcaster:
+        type: joint_state_broadcaster/JointStateBroadcaster
+          
+      arm_2r_controller:
+        type: joint_trajectory_controller_asmc/JointTrajectoryControllerASMC
+
+  arm_2r_controller:
+    ros__parameters:
+      joints:
+        - joint_0
+        - joint_1
+      command_interfaces:
+        - velocity
+      state_interfaces:
+        - position
+        - velocity
+      state_publish_rate: 50.0
+      action_monitor_rate: 20.0
+      allow_partial_joints_goal: true
+      allow_integration_in_goal_trajectories: false
+      interpolation_method: splines
+      open_loop_control: false
+      start_with_holding: true
+      allow_nonzero_velocity_at_trajectory_end: false
+      cmd_timeout: 0.0
+      constraints:
+        stopped_velocity_tolerance: 1.0
+        goal_time: 1.0
+        joint_0: { goal: 1.0, trajectory: 1.0}
+        joint_1: { goal: 1.0, trajectory: 1.0}
+      gains:   
+        joint_0: {lam: 0.1, phi: 1.0, leakage_constant_alpha: 15.0, leakage_constant_beta: 20.0, initial_adaptive_gain_alpha: 0.0, initial_adaptive_gain_beta: 0.0}
+        joint_1: {lam: 0.1, phi: 1.0, leakage_constant_alpha: 15.0, leakage_constant_beta: 20.0, initial_adaptive_gain_alpha: 0.0, initial_adaptive_gain_beta: 0.0}

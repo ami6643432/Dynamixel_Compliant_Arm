@@ -1,0 +1,4 @@
+rft_sensor_serial:
+  ros__parameters:
+    RFT_COM_PORT: "/dev/ttyUSB0"
+    RFT_TORQUE_DIVIDER: 1000

@@ -1,0 +1,10 @@
+<?xml version="1.0"?>
+<library path="rft_sensor_serial_hardware">
+  <class name="rft_sensor_serial/RFTSensorHardware"
+         type="rft_sensor_serial::RFTSensorHardware"
+         base_class_type="hardware_interface::SensorInterface">
+    <description>
+      ROS 2 Control hardware interface for RFT force-torque sensor.
+    </description>
+  </class>
+</library>

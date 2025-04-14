@@ -1,0 +1,17 @@
+file(REMOVE_RECURSE
+  "CMakeFiles/rft_sensor_serial__rosidl_typesupport_introspection_c.dir/rosidl_typesupport_introspection_c/rft_sensor_serial/srv/detail/multiplier__type_support.c.o"
+  "CMakeFiles/rft_sensor_serial__rosidl_typesupport_introspection_c.dir/rosidl_typesupport_introspection_c/rft_sensor_serial/srv/detail/multiplier__type_support.c.o.d"
+  "CMakeFiles/rft_sensor_serial__rosidl_typesupport_introspection_c.dir/rosidl_typesupport_introspection_c/rft_sensor_serial/srv/detail/rft_operation__type_support.c.o"
+  "CMakeFiles/rft_sensor_serial__rosidl_typesupport_introspection_c.dir/rosidl_typesupport_introspection_c/rft_sensor_serial/srv/detail/rft_operation__type_support.c.o.d"
+  "librft_sensor_serial__rosidl_typesupport_introspection_c.pdb"
+  "librft_sensor_serial__rosidl_typesupport_introspection_c.so"
+  "rosidl_typesupport_introspection_c/rft_sensor_serial/srv/detail/multiplier__rosidl_typesupport_introspection_c.h"
+  "rosidl_typesupport_introspection_c/rft_sensor_serial/srv/detail/multiplier__type_support.c"
+  "rosidl_typesupport_introspection_c/rft_sensor_serial/srv/detail/rft_operation__rosidl_typesupport_introspection_c.h"
+  "rosidl_typesupport_introspection_c/rft_sensor_serial/srv/detail/rft_operation__type_support.c"
+)
+
+# Per-language clean rules from dependency scanning.
+foreach(lang C)
+  include(CMakeFiles/rft_sensor_serial__rosidl_typesupport_introspection_c.dir/cmake_clean_${lang}.cmake OPTIONAL)
+endforeach()

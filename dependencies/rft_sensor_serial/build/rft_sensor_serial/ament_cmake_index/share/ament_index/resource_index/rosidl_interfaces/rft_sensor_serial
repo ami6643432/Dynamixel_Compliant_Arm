@@ -1,0 +1,8 @@
+srv/Multiplier.idl
+srv/Multiplier.srv
+srv/Multiplier_Request.msg
+srv/Multiplier_Response.msg
+srv/RftOperation.idl
+srv/RftOperation.srv
+srv/RftOperation_Request.msg
+srv/RftOperation_Response.msg

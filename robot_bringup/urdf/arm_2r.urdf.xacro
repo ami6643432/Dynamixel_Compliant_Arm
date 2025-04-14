@@ -1,0 +1,153 @@
+<?xml version="1.0"?>
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro" name="arm_2r">
+
+    <!-- ARGS -->
+    <xacro:arg name="USE_WITH_SIM" default="false" />
+    <xacro:arg name="NAMESPACE" default="" />
+    <xacro:arg name="YAML_PATH" default="" />
+
+    <!-- INCLUDES -->
+    <xacro:include filename="common.xacro" />
+
+    <!-- PROPERTIES -->
+    <xacro:property name="HALF_PI" value="1.57079632679"/>
+    <xacro:property name="PI" value="3.1415926535897931"/>
+
+    <!-- BASE LINK -->
+    <link name="world"/>
+
+    <joint name="arm_base_joint" type="fixed">
+        <origin xyz="0 0 1" rpy="0 0 0"/>
+        <parent link="world"/>
+        <child link="arm_base"/>
+    </joint>
+
+    <!-- arm_base -->
+    <link name="arm_base">
+        <xacro:cylinder_inertial radius="0.05" length="0.1" mass="0.1">
+            <origin xyz="0 0 0" rpy="0 ${HALF_PI} 0"/>
+        </xacro:cylinder_inertial>
+
+        <visual>
+            <origin xyz="0 0 0" rpy="0 ${HALF_PI} 0" />
+            <geometry>
+                <cylinder radius="0.05" length="0.1"/>
+            </geometry>
+            <material name="silver"/>
+        </visual>
+
+        <collision>
+            <origin xyz="0 0 0" rpy="0 ${HALF_PI} 0" />
+            <geometry>
+                <cylinder radius="0.05" length="0.1"/>
+            </geometry>
+        </collision>
+    </link>
+
+    <!-- LINK 1 -->
+    <link name="link_1">
+        <xacro:cylinder_inertial radius="0.05" length="0.4" mass="0.032">
+            <origin xyz="0 0 0" rpy="0 0 0"/>
+        </xacro:cylinder_inertial>
+
+        <visual>
+            <origin xyz="0 0 0" rpy="0 0 0" />
+            <geometry>
+                <cylinder radius="0.05" length="0.4"/>
+            </geometry>
+            <material name="silver"/>
+        </visual>
+
+        <collision>
+            <origin xyz="0 0 0" rpy="0 0 0" />
+            <geometry>
+                <cylinder radius="0.05" length="0.4"/>
+            </geometry>
+        </collision>
+    </link>
+
+    <!-- LINK 2 -->
+    <link name="link_2">
+        <xacro:cylinder_inertial radius="0.05" length="0.4" mass="0.032">
+            <origin xyz="0 0 0" rpy="0 0 0"/>
+        </xacro:cylinder_inertial>
+
+        <visual>
+            <origin xyz="0 0 0" rpy="0 0 0" />
+            <geometry>
+                <cylinder radius="0.05" length="0.4"/>
+            </geometry>
+            <material name="silver"/>
+        </visual>
+
+        <collision>
+            <origin xyz="0 0 0" rpy="0 0 0" />
+            <geometry>
+                <cylinder radius="0.05" length="0.4"/>
+            </geometry>
+        </collision>
+    </link>
+
+    <!-- JOINTS -->
+    <joint name="joint_0" type="revolute">
+        <origin xyz="0 0 0.4" rpy="0 0 0" />
+        <parent link="arm_base" />
+        <child link="link_1" />
+        <axis xyz="1 0 0"/>
+        <limit effort="2.0" velocity="5.0" lower="-1.57" upper="1.57"/>
+    </joint>
+
+    <joint name="joint_1" type="revolute">
+        <origin xyz="0 0 0.4" rpy="0 0 0" />
+        <parent link="link_1" />
+        <child link="link_2" />
+        <axis xyz="1 0 0"/>
+        <limit effort="2.0" velocity="5.0" lower="-1.57" upper="1.57"/>
+    </joint>
+
+    <!-- ROS2 CONTROL -->
+    <ros2_control name="arm_2r" type="system">
+        <hardware>
+            <xacro:if value="$(arg USE_WITH_SIM)">
+                <plugin>gz_ros2_control/GazeboSimSystem</plugin>
+            </xacro:if>
+            <xacro:unless value="$(arg USE_WITH_SIM)">
+                <plugin>dynamixel_hardware/DynamixelHardware</plugin>
+                <param name="usb_port">/dev/docker/u2d2</param>
+                <param name="baud_rate">4000000</param>
+                <param name="control_mode">current</param>
+            </xacro:unless>
+        </hardware>
+
+        <joint name="joint_0">
+            <param name="id">1</param>
+            <command_interface name="effort"/>  <!-- PID Effort Control -->
+            <command_interface name="position"/> <!-- Position-based Control -->
+            <state_interface name="position"/>
+            <state_interface name="velocity"/>
+            <state_interface name="effort"/>
+        </joint>
+
+        <joint name="joint_1">
+            <param name="id">2</param>
+            <command_interface name="effort"/>
+            <command_interface name="position"/>
+            <state_interface name="position"/>
+            <state_interface name="velocity"/>
+            <state_interface name="effort"/>
+        </joint>
+    </ros2_control>
+
+    <!-- GAZEBO INTEGRATION -->
+    <xacro:if value="$(arg USE_WITH_SIM)">
+        <gazebo>
+            <plugin filename="gz_ros2_control-system" name="gz_ros2_control::GazeboSimROS2ControlPlugin">
+                <parameters>$(arg YAML_PATH)</parameters>
+                <ros>
+                    <namespace>/$(arg NAMESPACE)</namespace>
+                </ros>
+            </plugin>
+        </gazebo>
+    </xacro:if>
+
+</robot>

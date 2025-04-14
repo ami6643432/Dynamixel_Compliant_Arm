@@ -1,0 +1,9 @@
+<library path="pid_effort_controller">
+  <class name="pid_effort_controller/PIDEffortController" 
+         type="pid_effort_controller::PIDEffortController" 
+         base_class_type="controller_interface::ControllerInterface">
+    <description>
+      PID controller using effort interface
+    </description>
+  </class>
+</library>

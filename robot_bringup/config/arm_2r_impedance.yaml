@@ -1,0 +1,58 @@
+/**:
+  controller_manager:
+    ros__parameters:
+      update_rate: 500 # Hz
+        
+      joint_state_broadcaster:
+        type: joint_state_broadcaster/JointStateBroadcaster
+          
+      arm_2r_impedance_controller:
+        type: impedance_effort_controller/ImpedanceEffortController
+
+  arm_2r_impedance_controller:
+    ros__parameters:
+      joints:
+        - joint_0
+        - joint_1
+      command_interfaces:
+        - effort
+      state_interfaces:
+        - position
+        - velocity
+        - effort
+      state_publish_rate: 500.0
+      action_monitor_rate: 200.0
+      # PID gains for impedance control
+      # p_gains: [4000.0, 5000.0]  # Proportional gains for joint_0 and joint_1
+      # i_gains: [1.0, 1.0]      # Integral gains for joint_0 and joint_1
+      # d_gains: [25.0, 25.0]    # Derivative gains for joint_0 and joint_1
+      
+      p_gains: [0.0, 0.0]  # Proportional gains for joint_0 and joint_1
+      i_gains: [0.0, 0.0]      # Integral gains for joint_0 and joint_1
+      d_gains: [0.0, 0.0]    # Derivative gains for joint_0 and joint_1
+      
+      
+      # Force/torque sensor topic to subscribe to
+      ft_sensor_topic: "/RFT_FORCE"
+      
+      # Impedance parameters
+      stiffness: [10.0, 10.0]  # N/m or Nm/rad
+      damping: [50.0, 50.0]        # Ns/m or Nms/rad
+      
+      # Force limits for safety
+      max_force: 10.0              # Maximum force in N
+      max_torque: 5.0              # Maximum torque in Nm
+    
+      # Robot geometry
+      link_1_length: 0.1  # Length of first link in meters
+      link_2_length: 0.4  # Length of second link in meters
+
+      # Impedance control parameters
+      desired_mass: [0.1, 0.1]    # Diagonal elements of Md_
+      desired_damping: [0.1, 0.1]  # Already defined as "damping" in your YAML
+      desired_stiffness: [4.5, 4.0]  # Already defined as "stiffness"
+      phi_initial: [8.0, 8.0]     # Diagonal elements of Phi_
+      gamma_initial: [0.01, 0.01]   # Initial adaptive state
+      lambda_matrix: [0.8000, 0.6000] # Diagonal elements of Lambda_
+      rho: 0.0                    # Robust term gain
+      varpi: 5.0                 # Boundary layer thickness

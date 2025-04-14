@@ -1,0 +1,21 @@
+// generated from rosidl_adapter/resource/srv.idl.em
+// with input from rft_sensor_serial/srv/Multiplier.srv
+// generated code does not contain a copyright notice
+
+
+module rft_sensor_serial {
+  module srv {
+    @verbatim (language="comment", text=
+      "Request")
+    struct Multiplier_Request {
+      int32 a;
+
+      int32 b;
+    };
+    @verbatim (language="comment", text=
+      "Response")
+    struct Multiplier_Response {
+      int32 result;
+    };
+  };
+};

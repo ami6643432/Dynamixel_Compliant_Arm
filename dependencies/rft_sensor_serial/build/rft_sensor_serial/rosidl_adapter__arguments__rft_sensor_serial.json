@@ -1,0 +1,7 @@
+{
+  "package_name": "rft_sensor_serial",
+  "non_idl_tuples": [
+    "/ros2_ws/src/rft_sensor_serial:srv/RftOperation.srv",
+    "/ros2_ws/src/rft_sensor_serial:srv/Multiplier.srv"
+  ]
+}
