@@ -1,0 +1,33 @@
+{
+  "configurations": [
+    {
+      "browse": {
+        "databaseFilename": "${default}",
+        "limitSymbolsToIncludedHeaders": false
+      },
+      "includePath": [
+        "/opt/ros/humble/include/**",
+        "/ros2_ws/src/dep_repos/control_toolbox/include/**",
+        "/ros2_ws/src/dep_repos/dynamixel_hw_if/dynamixel_hardware/include/**",
+        "/ros2_ws/src/dep_repos/gz_ros2_control/gz_ros2_control/include/**",
+        "/ros2_ws/src/dep_repos/joint_trajectory_controller_asmc/include/**",
+        "/ros2_ws/src/dependencies/impedance_effort_controller/include/**",
+        "/ros2_ws/src/dependencies/pid_effort_controller/include/**",
+        "/ros2_ws/src/dependencies/rft_sensor_serial/include/**",
+        "/ros2_ws/src/dependencies/ros2_controllers/effort_controllers/include/**",
+        "/ros2_ws/src/dependencies/ros2_controllers/force_torque_sensor_broadcaster/include/**",
+        "/ros2_ws/src/dependencies/ros2_controllers/forward_command_controller/include/**",
+        "/ros2_ws/src/dependencies/ros2_controllers/joint_state_broadcaster/include/**",
+        "/ros2_ws/src/dependencies/ros2_controllers/pose_broadcaster/include/**",
+        "/ros2_ws/src/dependencies/trajectory_sender/include/**",
+        "/usr/include/**"
+      ],
+      "name": "ROS",
+      "intelliSenseMode": "gcc-x64",
+      "compilerPath": "/usr/bin/gcc",
+      "cStandard": "gnu11",
+      "cppStandard": "c++14"
+    }
+  ],
+  "version": 4
+}
